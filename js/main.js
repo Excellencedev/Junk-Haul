@@ -3,7 +3,6 @@
 
   const menuToggle = document.querySelector('.menu-toggle');
   const navList = document.querySelector('.nav-list');
-
   if (menuToggle && navList) {
     menuToggle.addEventListener('click', function() {
       const open = navList.classList.toggle('open');
@@ -11,7 +10,6 @@
       this.setAttribute('aria-expanded', open);
       document.body.style.overflow = open ? 'hidden' : '';
     });
-
     navList.querySelectorAll('a').forEach(function(link) {
       link.addEventListener('click', function() {
         navList.classList.remove('open');
@@ -26,8 +24,8 @@
   let lastScroll = 0;
   window.addEventListener('scroll', function() {
     if (window.innerWidth < 768) {
-      const current = window.scrollY;
-      if (current > lastScroll && current > 100) {
+      var current = window.scrollY;
+      if (current > lastScroll && current > 120) {
         header.style.transform = 'translateY(-100%)';
       } else {
         header.style.transform = 'translateY(0)';
@@ -36,27 +34,26 @@
     }
   }, { passive: true });
 
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(function(item) {
+  document.querySelectorAll('.faq-item').forEach(function(item) {
     item.addEventListener('toggle', function() {
       if (this.open) {
-        faqItems.forEach(function(other) {
+        document.querySelectorAll('.faq-item').forEach(function(other) {
           if (other !== item) other.open = false;
         });
       }
     });
   });
 
-  const form = document.querySelector('.contact-form');
+  var form = document.querySelector('.contact-form');
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      const original = btn.textContent;
+      var btn = form.querySelector('button[type="submit"]');
+      var original = btn.textContent;
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
-      const data = new URLSearchParams();
+      var data = new URLSearchParams();
       Array.from(form.elements).forEach(function(el) {
         if (el.name && el.value) data.append(el.name, el.value);
       });
@@ -94,7 +91,7 @@
     });
   }
 
-  const observer = new IntersectionObserver(function(entries) {
+  var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         entry.target.style.opacity = '1';
@@ -103,9 +100,9 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.service-card, .feature-card, .step, .faq-item').forEach(function(el) {
+  document.querySelectorAll('.service-card, .feature-card, .step, .faq-item, .about-card').forEach(function(el) {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
+    el.style.transform = 'translateY(24px)';
     el.style.transition = 'opacity .6s ease, transform .6s ease';
     observer.observe(el);
   });
