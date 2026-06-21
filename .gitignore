@@ -1,0 +1,9 @@
+# Old site artifacts
+old-site-full.png
+old-site-snapshot.md
+.playwright-mcp/
+
+# System
+.DS_Store
+Thumbs.db
+desktop.ini
