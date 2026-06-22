@@ -7,3 +7,5 @@ old-site-snapshot.md
 .DS_Store
 Thumbs.db
 desktop.ini
+config.bat
+node_modules
